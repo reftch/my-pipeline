@@ -4,9 +4,20 @@ pipeline {
         docker { image 'node:16.13.1-alpine' }
     }
     stages {
-        stage('Test') {
+        stage('Build Install') {
             steps {
                 sh 'node --version'
+                sh 'npm install'
+            }
+        }
+        stage('Build Product') {
+            steps {
+                sh 'npm start'
+            }
+        }
+        stage('Build Deploy') {
+            steps {
+                echo 'Deploying application ...'
             }
         }
     }
